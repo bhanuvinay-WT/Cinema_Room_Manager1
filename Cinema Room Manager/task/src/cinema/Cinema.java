@@ -8,32 +8,45 @@ public class Cinema {
         int rows = scanner.nextInt();
         System.out.println("Enter the number of seats in each row:");
         int seats = scanner.nextInt();
+        TheaterSeating(rows, seats, -1, -1);
+        System.out.println();
+        System.out.println("Enter a row number:");
+        int row = scanner.nextInt();
+        System.out.println("Enter a seat number in that row:");
+        int seat = scanner.nextInt();
+
         int totalSeats = rows * seats;
 
-        if(totalSeats <= 60){
-            System.out.println("Total income:$"+totalSeats*10);
+        if (totalSeats <= 60) {
+            // System.out.println("Total income:$"+totalSeats*10);
+            System.out.println("Ticket price: $10");
+        } else {
+            if (row > (rows / 2)) {
+                System.out.println("Ticket price: $8");
+            } else
+                System.out.println("Ticket price: $10");
+
         }
-        else{
-            if(rows%2==1){
-                totalSeats = (rows/2*10)*seats + (((rows/2)+1)*8)*seats;
-            }
-            else{
-                totalSeats = (rows/2*10)*seats + (rows/2*8)*seats;
-            }
-            System.out.println("Total income:$"+totalSeats);
-        }
-     /*  System.out.println("Cinema:");
-       System.out.print(" ");
-       for(int i=1;i<=8;i++){
-           System.out.print(" "+i);
+        TheaterSeating(rows, seats, row, seat);
+        scanner.close();
+    }
+
+    public static void TheaterSeating(int rows, int seats, int row, int seat) {
+        System.out.println("Cinema:");
+        System.out.print(" ");
+        for (int i = 1; i <= seats; i++) {
+            System.out.print(" " + i);
         }
         System.out.println();
-        for(int i=1;i<8;i++){
+        for (int i = 1; i <= rows; i++) {
             System.out.print(i);
-            for(int j=0;j<8;j++){
-                System.out.print(" "+"S");
+            for (int j = 0; j < seats; j++) {
+                if (i == row && j == seat - 1) {
+                    System.out.print(" " + "B");
+                } else
+                    System.out.print(" " + "S");
             }
             System.out.println();
-        }   */
+        }
     }
 }
